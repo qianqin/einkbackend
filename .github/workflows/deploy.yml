@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Copy .env if missing
+        run: |
+          if [ ! -f .env ]; then
+            cp .env.example .env 2>/dev/null || echo "No .env.example found, ensure .env exists on the runner"
+          fi
+
+      - name: Build and restart
+        run: |
+          docker compose build
+          docker compose up -d

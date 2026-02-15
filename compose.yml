@@ -2,7 +2,7 @@ name: "terminus"
 
 services:
   init-certificates:
-    image: ghcr.io/usetrmnl/terminus:latest
+    image: ghcr.io/qianqin/einkbackend:latest
     user: root
     environment:
       CERTIFICATE_URLS: ${CERTIFICATE_URLS:-}
@@ -14,7 +14,7 @@ services:
 
   web:
     init: true
-    image: ghcr.io/usetrmnl/terminus:latest
+    image: ghcr.io/qianqin/einkbackend:latest
     environment:
       HANAMI_PORT: ${HANAMI_PORT}
       API_URI: ${API_URI}
@@ -49,7 +49,7 @@ services:
 
   worker:
     init: true
-    image: ghcr.io/usetrmnl/terminus:latest
+    image: ghcr.io/qianqin/einkbackend:latest
     environment:
       HANAMI_PORT: ${HANAMI_PORT}
       API_URI: ${API_URI}

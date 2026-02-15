@@ -44,7 +44,7 @@ module Terminus
             path = assets["loader.svg"].path
 
             debug path
-            %(<img src="#{path}" alt="Loader" class="image" width="800" height="480"/>)
+            %(<img src="#{path}" alt="Loader" class="image" width="960" height="680"/>)
           end
 
           def debug path

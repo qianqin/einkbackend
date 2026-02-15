@@ -15,8 +15,8 @@ module Terminus
           label: "Placeholder",
           name: "placeholder",
           uri: "setup.svg",
-          width: 800,
-          height: 480,
+          width: 960,
+          height: 680,
           **
         )
           @id = id
