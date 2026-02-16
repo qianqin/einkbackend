@@ -13,6 +13,8 @@ services:
       FORCE_HTTPS: 1
       TRUSTED_PROXIES: "*"
       REGISTRATION_ENABLED: 0
+      PUPPETEER_DOCKER: true
+      PUPPETEER_WINDOW_SIZE_STRATEGY: v2
       DB_DATABASE: database/storage/database.sqlite
     volumes:
       - database:/var/www/html/database/storage

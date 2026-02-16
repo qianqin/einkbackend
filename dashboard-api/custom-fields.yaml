@@ -1,0 +1,103 @@
+- keyname: lat
+  name: Latitude
+  field_type: string
+- keyname: lon
+  name: Longitude
+  field_type: string
+- keyname: tz
+  name: Timezone
+  field_type: string
+- keyname: p1_name
+  name: Person 1 Name
+  field_type: string
+- keyname: p1_type
+  name: "Person 1 Type (kid or adult)"
+  field_type: string
+- keyname: p1_ics_1
+  name: "Person 1 Calendar 1"
+  field_type: string
+  optional: true
+- keyname: p1_ics_2
+  name: "Person 1 Calendar 2"
+  field_type: string
+  optional: true
+- keyname: p1_ics_3
+  name: "Person 1 Calendar 3"
+  field_type: string
+  optional: true
+- keyname: p1_timetable
+  name: "Person 1 Timetable JSON (kids)"
+  field_type: string
+  optional: true
+- keyname: p2_name
+  name: Person 2 Name
+  field_type: string
+  optional: true
+- keyname: p2_type
+  name: "Person 2 Type (kid or adult)"
+  field_type: string
+  optional: true
+- keyname: p2_ics_1
+  name: "Person 2 Calendar 1"
+  field_type: string
+  optional: true
+- keyname: p2_ics_2
+  name: "Person 2 Calendar 2"
+  field_type: string
+  optional: true
+- keyname: p2_ics_3
+  name: "Person 2 Calendar 3"
+  field_type: string
+  optional: true
+- keyname: p2_timetable
+  name: "Person 2 Timetable JSON (kids)"
+  field_type: string
+  optional: true
+- keyname: p3_name
+  name: Person 3 Name
+  field_type: string
+  optional: true
+- keyname: p3_type
+  name: "Person 3 Type (kid or adult)"
+  field_type: string
+  optional: true
+- keyname: p3_ics_1
+  name: "Person 3 Calendar 1"
+  field_type: string
+  optional: true
+- keyname: p3_ics_2
+  name: "Person 3 Calendar 2"
+  field_type: string
+  optional: true
+- keyname: p3_ics_3
+  name: "Person 3 Calendar 3"
+  field_type: string
+  optional: true
+- keyname: p3_timetable
+  name: "Person 3 Timetable JSON (kids)"
+  field_type: string
+  optional: true
+- keyname: p4_name
+  name: Person 4 Name
+  field_type: string
+  optional: true
+- keyname: p4_type
+  name: "Person 4 Type (kid or adult)"
+  field_type: string
+  optional: true
+- keyname: p4_ics_1
+  name: "Person 4 Calendar 1"
+  field_type: string
+  optional: true
+- keyname: p4_ics_2
+  name: "Person 4 Calendar 2"
+  field_type: string
+  optional: true
+- keyname: p4_ics_3
+  name: "Person 4 Calendar 3"
+  field_type: string
+  optional: true
+- keyname: p4_timetable
+  name: "Person 4 Timetable JSON (kids)"
+  field_type: string
+  optional: true
