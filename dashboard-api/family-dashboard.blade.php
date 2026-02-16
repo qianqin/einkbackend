@@ -248,11 +248,22 @@
 
 <x-trmnl::view size="{{ $size }}">
     <style>
+        /* CJK font support — @import must be first */
+        @import url('https://fonts.bunny.net/css?family=Noto+Sans+SC:400,500,600');
+
+        /* Override framework screen dimensions for 13-inch display */
+        :root {
+            --screen-w: 960px;
+            --screen-h: 680px;
+            --screen-w-original: 960px;
+            --screen-h-original: 680px;
+        }
+
         .fd {
             display: flex;
             flex-direction: column;
             height: 100%;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
             letter-spacing: -0.01em;
         }
         .fd-columns {
