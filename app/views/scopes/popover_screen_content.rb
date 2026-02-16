@@ -7,9 +7,9 @@ module Terminus
       class PopoverScreenContent < Hanami::View::Scope
         def dom_id = "popover-screen-#{id}"
 
-        def width = locals.fetch __method__, 960
+        def width = locals.fetch __method__, 800
 
-        def height = locals.fetch __method__, 680
+        def height = locals.fetch __method__, 480
 
         def render(path = "shared/popovers/content/screen") = super
       end

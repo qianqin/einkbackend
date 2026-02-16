@@ -16,7 +16,13 @@ jobs:
       - name: Copy .env
         run: cp ~/einkbackend.env .env
 
-      - name: Build and restart
+      - name: Pull and restart
         run: |
-          docker compose build
+          docker compose pull
           docker compose up -d
+
+      - name: Set 13-inch display dimensions
+        run: |
+          sleep 30
+          docker compose exec -T database psql -U terminus -d terminus -c \
+            "UPDATE model SET width = 960, height = 680 WHERE name = 'og_png';"

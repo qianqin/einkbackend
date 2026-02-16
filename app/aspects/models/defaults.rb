@@ -12,8 +12,8 @@ module Terminus
         offset_x: 0,
         offset_y: 0,
         scale_factor: 1,
-        width: 960,
-        height: 680,
+        width: 800,
+        height: 480,
         palette_ids: nil,
         css: nil
       }.freeze
