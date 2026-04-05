@@ -135,8 +135,8 @@
     ];
     $weatherSvg = $svgPaths[$weatherIcon] ?? '';
 
-    // Parse a single iCal IDX into events from today onward
-    $parseIcal = function (int $idx) use ($data, $tz, $today) {
+    // Parse a single iCal IDX into events that haven't ended yet
+    $parseIcal = function (int $idx) use ($data, $tz, $today, $now) {
         return collect(Arr::get($data, "IDX_{$idx}.ical", []))
             ->map(function ($e) use ($tz) {
                 try {
@@ -160,7 +160,18 @@
                     'all_day' => isset($e['DTSTART']) && strlen($e['DTSTART']) <= 10,
                 ];
             })
-            ->filter(fn ($e) => $e['start'] && $e['start']->greaterThanOrEqualTo($today));
+            ->filter(function ($e) use ($now, $today) {
+                if (! $e['start']) return false;
+                // Future days: keep everything from today onward
+                if ($e['start']->greaterThan($today->copy()->endOfDay())) return true;
+                // Today: all-day events stay, timed events must not have ended yet
+                if ($e['start']->isSameDay($today)) {
+                    if ($e['all_day']) return true;
+                    $cutoff = $e['end'] ?? $e['start'];
+                    return $cutoff->greaterThan($now);
+                }
+                return false;
+            });
     };
 
     // --- People (p1–p4), up to 3 ICS calendars per adult ---
@@ -285,15 +296,15 @@
         .fd-name {
             background: black;
             color: white;
-            padding: 10px 14px;
-            font-size: 15px;
+            padding: 14px 18px;
+            font-size: 22px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             text-align: center;
         }
         .fd-body {
-            padding: 8px 12px;
+            padding: 12px 16px;
             flex: 1;
             overflow: hidden;
         }
@@ -308,27 +319,27 @@
             height: 100%;
         }
         .fd-tt-day {
-            font-size: 13px;
+            font-size: 18px;
             font-weight: 600;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            padding: 6px 0;
+            padding: 8px 0;
             border-bottom: 1px solid black;
         }
         .fd-slot {
-            font-size: 15px;
+            font-size: 22px;
             border-bottom: 1px solid black;
             display: flex;
             align-items: center;
-            padding: 0 12px;
+            padding: 0 16px;
         }
         .fd-slot:last-child {
             border-bottom: none;
         }
         .fd-slot-num {
-            width: 28px;
-            font-size: 13px;
+            width: 36px;
+            font-size: 18px;
             font-weight: 400;
             flex-shrink: 0;
         }
@@ -338,36 +349,36 @@
 
         /* Adult events */
         .fd-event {
-            padding: 7px 0;
+            padding: 10px 0;
             border-bottom: 1px solid black;
         }
         .fd-event:last-child {
             border-bottom: none;
         }
         .fd-event-time {
-            font-size: 12px;
+            font-size: 17px;
             font-weight: 500;
             letter-spacing: 0.02em;
             text-transform: uppercase;
         }
         .fd-event-summary {
-            font-size: 15px;
+            font-size: 22px;
             font-weight: 400;
-            margin-top: 2px;
+            margin-top: 3px;
             line-height: 1.3;
         }
 
         .fd-empty {
-            font-size: 14px;
+            font-size: 20px;
             font-weight: 400;
-            padding-top: 12px;
+            padding-top: 16px;
         }
         .fd-next-day {
-            font-size: 12px;
+            font-size: 17px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            padding: 8px 0 6px;
+            padding: 10px 0 8px;
             border-bottom: 1px solid black;
             margin-bottom: 2px;
         }
@@ -377,25 +388,25 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 16px;
+            padding: 14px 20px;
             border-top: 2px solid black;
         }
         .fd-weather {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .fd-temp {
-            font-size: 20px;
+            font-size: 28px;
             font-weight: 600;
             letter-spacing: -0.02em;
         }
         .fd-condition {
-            font-size: 14px;
+            font-size: 20px;
             font-weight: 400;
         }
         .fd-date {
-            font-size: 14px;
+            font-size: 20px;
             font-weight: 500;
         }
     </style>
@@ -451,7 +462,7 @@
         <div class="fd-bar">
             <div class="fd-weather">
                 @if ($weatherSvg)
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">{!! $weatherSvg !!}</svg>
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">{!! $weatherSvg !!}</svg>
                 @endif
                 @if ($temp !== null)
                     <span class="fd-temp">{{ $temp }}°</span>

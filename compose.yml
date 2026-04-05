@@ -2,7 +2,7 @@ name: "trmnl"
 
 services:
   app:
-    image: ghcr.io/usetrmnl/byos_laravel:latest
+    image: ghcr.io/usetrmnl/byos_laravel:0.31.4
     ports:
       - "${APP_PORT:-2300}:8080"
     environment:
@@ -19,6 +19,7 @@ services:
     volumes:
       - database:/var/www/html/database/storage
       - storage:/var/www/html/storage/app/public/images/generated
+      - firmware:/var/www/html/storage/app/public/firmwares
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl --fail --silent http://localhost:8080/up"]
@@ -35,3 +36,4 @@ services:
 volumes:
   database:
   storage:
+  firmware:
