@@ -20,3 +20,7 @@ jobs:
         run: |
           docker compose pull
           docker compose up -d --remove-orphans
+
+      - name: Prune superseded images
+        if: always()
+        run: docker image prune -af --filter "until=24h"
