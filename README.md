@@ -19,7 +19,7 @@ Custom 13.3-inch e-ink dashboard built on [TRMNL](https://usetrmnl.com/) BYOS (B
     └── deploy.yml              CI/CD for backend deploys
 ```
 
-`laravel/` (TRMNL BYOS Laravel server) is gitignored — it tracks upstream at [usetrmnl/byos_laravel](https://github.com/usetrmnl/byos_laravel).
+`laravel/` (TRMNL BYOS Laravel server, "larapaper") is gitignored — it tracks upstream at [usetrmnl/larapaper](https://github.com/usetrmnl/larapaper) (formerly `byos_laravel`).
 
 ## Hardware
 
@@ -35,7 +35,7 @@ Custom 13.3-inch e-ink dashboard built on [TRMNL](https://usetrmnl.com/) BYOS (B
 ┌──────────────────────────────────────────────────┐
 │  dashboard.qin.berlin                            │
 │  ┌────────────────────────────────────────────┐  │
-│  │  Docker: ghcr.io/usetrmnl/byos_laravel     │  │
+│  │  Docker: ghcr.io/usetrmnl/larapaper        │  │
 │  │  ├─ Laravel (PHP-FPM + Nginx on :8080)     │  │
 │  │  ├─ Puppeteer (Chromium, renders Blade→PNG) │  │
 │  │  └─ SQLite                                  │  │
@@ -84,7 +84,7 @@ Pushes to `main` auto-deploy via GitHub Actions on a self-hosted runner:
 git push origin main
 ```
 
-The workflow ([.github/workflows/deploy.yml](.github/workflows/deploy.yml)) pulls the latest `byos_laravel` image and restarts the container. The `.env` file lives on the server at `~/trmnl.env`.
+The workflow ([.github/workflows/deploy.yml](.github/workflows/deploy.yml)) pulls the pinned `larapaper` image and restarts the container. The `.env` file lives on the server at `~/trmnl.env`.
 
 ### Manual deploy
 
