@@ -10,7 +10,7 @@ Custom 13.3-inch e-ink dashboard built on [TRMNL](https://usetrmnl.com/) BYOS (B
 │   ├── family-dashboard.blade.php
 │   ├── custom-fields.yaml
 │   └── config-values.md
-├── firmware/                   ESP32 firmware (git submodule, forked from usetrmnl/trmnl-firmware)
+├── firmware/                   ESP32 firmware (local clone, forked from usetrmnl/firmware; gitignored)
 ├── scripts/
 │   ├── deploy-firmware.sh      Build + OTA deploy script
 │   ├── deploy-dashboard.sh     Deploy plugin template to server
